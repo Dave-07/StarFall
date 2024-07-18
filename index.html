@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starfall</title>
+    <style>
+        body{
+            margin: 0;
+            height: 100vh;
+            background-color: black;
+            overflow: hidden;
+        }
+        span{
+            background: url(https://cdn1.iconfinder.com/data/icons/christmas-flat-4/58/019_-_Star-256.png);
+            width: 100px;
+            height: 100px;
+            pointer-events: none;
+            position: absolute;
+            background-size: cover;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: animate 6s linear;
+        }
+        @keyframes animate{
+            0% {
+                transform: translate(-50%, -50%); 
+                opacity: 1;
+                filter: hue-rotate(0);
+            }
+            100% {
+                transform: translate(-50%, +5000%); 
+                opacity: 0;
+                filter: hue-rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const bodyEL = document.querySelector('body');
+
+        bodyEL.addEventListener('mousemove', (e) => {
+            const xPos = e.offsetX;
+            const yPos = e.offsetY;
+            const spanEl = document.createElement('span');
+            const size = Math.floor(Math.random()*100);
+            bodyEL.appendChild(spanEl);
+            
+            spanEl.style.width = `${size}px`;
+            spanEl.style.height = `${size}px`;
+
+            spanEl.style.left = `${xPos}px`;
+            spanEl.style.top = `${yPos}px`;
+           
+
+            setTimeout(()=> spanEl.remove(), 6000);
+        });
+
+    </script>
+</body>
+</html>
